@@ -12,6 +12,7 @@ use App\Http\Controllers\EmailsController;
 use Exception;
 use Storage;
 use \PDF;
+use DB;
 
 class UserController extends Controller
 {
@@ -42,25 +43,37 @@ public function store(UserRequest $request)
     // dd($request->cr->file);
      $user = new User($request->all());
     //  $request->cr->store('public');
+    //to save the uploaded file to local storage 
      if($request->cr) {
         $fileName = time().'_'.$request->cr->getClientOriginalName();
         $filePath = $request->cr->storeAs('uploads', $fileName, 'public');
     
         // $user->fileName = time().'_'.$request->cr->getClientOriginalName();
         $user->cr = '/storage/' . $filePath;    
-        // return back()
-        // ->with('success','File has uploaded to the database.')
-        // ->with('file', $name);
+
     }
+    
+   //   dd($user->id);
+   // $db  = User::where("id","=",$user->id);
+   // dd($db);
+   // $test = 'hellooo thereee';
      $user->save();
-   //   $pdf = PDF::loadView()
+     $id = $user->id;
+   //   dd($id);
+   //   dd('mariam'.$id.'.html');
+     Storage::put('mariam'.$id.'.html',$user); 
+
+     
+   //  Storage::disk('local')->put('example.txt', 'Contents');
    //  dd($user);
-    $pdf = PDF::loadView($this->user, $user);
+    $pdf = PDF::loadFile('/var/www/laravel/Form/storage/app/mariam'.$id.'.html');
+    $pdf->setPaper('a4', 'landscape')->save('/var/www/laravel/Form/storage/app/mariam'.$id.'.pdf');
      return response([
         'data'=> new UserResource($user),
-         $pdf->stream('invoiceoioiio.pdf'),
         'success' => 'Your data has been sent successfully'
     ],Response::HTTP_CREATED);
+
+   // $user->save();
         
  }
 
