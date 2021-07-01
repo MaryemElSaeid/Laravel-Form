@@ -7,9 +7,10 @@ use App\Mail\AttachmentMail;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use Bus;
 use DB;
 
-class EmailsController extends Controller
+class EmailsController extends Controller 
 {
     public function sendEmailToUser($id)
     {
@@ -26,8 +27,15 @@ class EmailsController extends Controller
     public function sendEmailToAdmin($id) 
     {
         // dd($id);
+        // $iduser = $id;
+        // $jobs = [];
+        // $jobs[] = Mail::to('admin@admin.com')->send(new AttachmentMail($id));
+        // $batch = Bus::batch($jobs)->dispatch();
+        // event(new AttachmentMail($id));
+
         $this->sendEmailToUser($id);
         Mail::to('admin@admin.com')->send(new AttachmentMail($id));
+        return view('Mail/attachment',compact('iduser'));
     }
 
 

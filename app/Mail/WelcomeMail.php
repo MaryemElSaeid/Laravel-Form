@@ -9,10 +9,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 
-class WelcomeMail extends Mailable
+class WelcomeMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-
+//if i am going to deploy application then i have to make 
+//queue:work working to monitor application
     /**
      * Create a new message instance.
      *

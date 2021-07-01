@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi Admin
+# Hi Admin,
 
 A new brand has requested to join.
 

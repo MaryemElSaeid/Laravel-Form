@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
 
-class AttachmentMail extends Mailable
+class AttachmentMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     
