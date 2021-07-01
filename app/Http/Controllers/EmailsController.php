@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\AttachmentMail;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class EmailsController extends Controller
 {
@@ -18,10 +19,11 @@ class EmailsController extends Controller
         return new WelcomeMail();
     }
 
-    public function sendEmailToAdmin() 
+    public function sendEmailToAdmin($id) 
     {
+        // dd($id);
         $this->sendEmailToUser();
-        Mail::to('admin@admin.com')->send(new AttachmentMail());
+        Mail::to('admin@admin.com')->send(new AttachmentMail($id));
     }
 
 

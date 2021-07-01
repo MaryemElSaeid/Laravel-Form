@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 //route for emailing
-Route::get('/email', 'App\Http\Controllers\EmailsController@sendEmailToAdmin');
+Route::get('/email/{id}', 'App\Http\Controllers\EmailsController@sendEmailToAdmin');

@@ -61,13 +61,13 @@ public function store(UserRequest $request)
      $id = $user->id;
    //   dd($id);
    //   dd('mariam'.$id.'.html');
-     Storage::put('mariam'.$id.'.html',$user); 
+     Storage::put('User'.$id.'.html',$user); 
 
      
    //  Storage::disk('local')->put('example.txt', 'Contents');
    //  dd($user);
-    $pdf = PDF::loadFile('/var/www/laravel/Form/storage/app/mariam'.$id.'.html');
-    $pdf->setPaper('a4', 'landscape')->save('/var/www/laravel/Form/storage/app/mariam'.$id.'.pdf');
+    $pdf = PDF::loadFile('/var/www/laravel/Form/storage/app/User'.$id.'.html');
+    $pdf->setPaper('a4', 'landscape')->save('/var/www/laravel/Form/public/files/User'.$id.'.pdf');
      return response([
         'data'=> new UserResource($user),
         'success' => 'Your data has been sent successfully'
