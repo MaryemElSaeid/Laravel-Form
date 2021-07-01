@@ -7,22 +7,26 @@ use App\Mail\AttachmentMail;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use DB;
 
 class EmailsController extends Controller
 {
-    public function sendEmailToUser()
+    public function sendEmailToUser($id)
     {
         //i want to access user who sent the form
-        // $user = new User;
-        // $userEmail = $user->email;
-        Mail::to('user@user.com')->send(new WelcomeMail());
+        $user = new User;
+        // dd($user->id);
+        $current_user  = DB::table('users')->where("id","=",$id)->first();
+        // dd($current_user);
+        $userEmail = $current_user->email;
+        Mail::to($userEmail)->send(new WelcomeMail());
         return new WelcomeMail();
     }
 
     public function sendEmailToAdmin($id) 
     {
         // dd($id);
-        $this->sendEmailToUser();
+        $this->sendEmailToUser($id);
         Mail::to('admin@admin.com')->send(new AttachmentMail($id));
     }
 
