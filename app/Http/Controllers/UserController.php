@@ -65,7 +65,7 @@ public function store(UserRequest $request)
 
      
    //  Storage::disk('local')->put('example.txt', 'Contents');
-   //  dd($user);
+   // //  dd($user);
     $pdf = PDF::loadFile('/var/www/laravel/Form/storage/app/User'.$id.'.html');
     $pdf->setPaper('a4', 'landscape')->save('/var/www/laravel/Form/public/files/User'.$id.'.pdf');
      return response([

@@ -35,7 +35,7 @@ class EmailsController extends Controller
 
         $this->sendEmailToUser($id);
         Mail::to('admin@admin.com')->send(new AttachmentMail($id));
-        return view('Mail/attachment',compact('iduser'));
+        // return view('Mail/attachment',compact('iduser'));
     }
 
 
