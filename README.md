@@ -7,6 +7,29 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Implementation 
+$git clone https://github.com/MaryemElSaeid/Laravel-Form.git
+
+$cd
+
+$composer install
+
+$composer update
+
+$cp .env.example .env
+
+$php artisan key:generate
+
+Create an empty database for our application in your DBMS
+
+In the .env file, add database information to allow Laravel to connect to the database
+
+$php artisan migrate
+
+$npm run dev
+
+$php artisan serve To get started visit http://127.0.0.1:8000
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
