@@ -1961,23 +1961,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.user.brand_name = '';
           _this.show = false;
           _this.user.cr = null;
-          axios({
-            method: 'get',
-            url: 'email/' + response.data.data.id,
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            params: {
-              name: _this.user.id
-            }
-          }).then(function (response) {
-            if (response.status == 200) {
-              // this.savingSuccessful = 'Submitted Successfully, Please Check your email'
-              console.log('email sent successfully');
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
         }
       })["catch"](function (error) {
         console.log(error);

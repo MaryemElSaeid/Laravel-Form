@@ -18,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//route for emailing
+
 Route::get('/email/{id}', 'App\Http\Controllers\EmailsController@sendEmailToAdmin');
+

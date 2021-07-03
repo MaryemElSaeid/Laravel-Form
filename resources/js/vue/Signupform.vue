@@ -136,26 +136,6 @@ export default {
                         this.user.brand_name='';
                         this.show = false ;
                         this.user.cr = null ;
-
-                            axios({
-                                    method: 'get',
-                                    url: 'email/'+response.data.data.id,
-                                    headers: { 'Content-Type': 'application/json' },
-                                    params: { 
-                                    name: this.user.id,               
-                                    },
-                                    
-                            })
-
-                            .then(response =>{
-                                if(response.status == 200) {
-                                        // this.savingSuccessful = 'Submitted Successfully, Please Check your email'
-                                        console.log('email sent successfully');
-                                }
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            })
                         
                  }
              })
