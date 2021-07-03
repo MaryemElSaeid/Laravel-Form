@@ -1906,39 +1906,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onmouseover: function onmouseover() {
-      this.savingSuccessful = ''; // console.log('testttt');
+      this.savingSuccessful = '';
     },
     onChange: function onChange(e) {
       this.user.cr = e.target.files[0];
     },
-    //write error or success msg depending on server respond
     handleSubmit: function handleSubmit() {
       var _this = this;
 
-      //try to exit code if an error msg appeared
       this.nameError = this.user.name.length > 5 ? '' : 'Name must be at least 6 chars long';
-      this.brandError = this.user.brand_name.length > 5 ? '' : 'Brand Name must be at least 6 chars long'; // // if(this.nameError == '' && this.brandError == '') {
-      // //     this.savingSuccessful = 'Your form has been submitted successfuly'
-      // // }
-      // console.log(this.user);
-      // axios.post('api/form',{
-      //    user: this.user
-      // })
-      //    console.log(this.user.id);
-      //    function checkoncr() {
-      //  console.log(this.user.cr);
+      this.brandError = this.user.brand_name.length > 5 ? '' : 'Brand Name must be at least 6 chars long';
 
       if (this.user.cr == null || this.user.cr == true) {
-        var data = ''; //    console.log(data);
-        //    console.log('file not uploaded')
-        //    console.log(this.user.cr);
+        var data = '';
       } else {
         var data = new FormData();
-        data.append('cr', this.user.cr); // console.log(data);
-        // console.log(this.user.cr);           
-      } //    }
-      //     console.log(data);
-
+        data.append('cr', this.user.cr);
+      }
 
       axios({
         method: 'post',
@@ -1954,7 +1938,6 @@ __webpack_require__.r(__webpack_exports__);
         data: data
       }).then(function (response) {
         if (response.status == 201) {
-          //  console.log(response.data.data.id);
           _this.savingSuccessful = 'Submitted Successfully, Please Check your email';
           _this.user.name = '';
           _this.user.email = '';
@@ -1965,10 +1948,8 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    } //end handle method
-
-  } //method
-
+    }
+  }
 });
 
 /***/ }),

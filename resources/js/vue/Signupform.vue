@@ -64,55 +64,31 @@ export default {
 
         onmouseover() {
             this.savingSuccessful = ''
-            // console.log('testttt');
         },
 
 
         onChange(e) {
                 this.user.cr = e.target.files[0];
         },
-               //write error or success msg depending on server respond
+               
                handleSubmit() {
-                //try to exit code if an error msg appeared
+            
                 this.nameError = this.user.name.length > 5 
                 ? '' : 'Name must be at least 6 chars long' 
 
                 this.brandError = this.user.brand_name.length > 5 
                 ? '' : 'Brand Name must be at least 6 chars long' 
 
-                // // if(this.nameError == '' && this.brandError == '') {
-
-                // //     this.savingSuccessful = 'Your form has been submitted successfuly'
-                // // }
-                // console.log(this.user);
-                
-                // axios.post('api/form',{
-                //    user: this.user
-                // })
-            //    console.log(this.user.id);
-
-              
-            //    function checkoncr() {
-
-                //  console.log(this.user.cr);
-
-                    if(this.user.cr == null || this.user.cr == true ){
+                if(this.user.cr == null || this.user.cr == true ){
                         var data = '';
-                    //    console.log(data);
-                    //    console.log('file not uploaded')
-                    //    console.log(this.user.cr);
+        
                 } else {
                         var data = new FormData();
                         data.append('cr', this.user.cr);
-                        // console.log(data);
-                        // console.log(this.user.cr);           
+                  
                 }
                    
-            //    }
 
-               
-
-            //     console.log(data);
            
                axios({
                    
@@ -129,22 +105,21 @@ export default {
 
              .then(response =>{
                  if(response.status == 201) {
-                    //  console.log(response.data.data.id);
+        
                         this.savingSuccessful = 'Submitted Successfully, Please Check your email'
                         this.user.name='';
                         this.user.email='';
                         this.user.brand_name='';
                         this.show = false ;
                         this.user.cr = null ;
-                        
                  }
              })
              .catch(error => {
                  console.log(error);
              })  
-        },//end handle method
+        },
 
-    }//method
+    }
 
 }
 

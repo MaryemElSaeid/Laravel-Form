@@ -19,5 +19,4 @@ Route::get('/', function () {
 });
 
 
-Route::get('/email/{id}', 'App\Http\Controllers\EmailsController@sendEmailToAdmin');
 

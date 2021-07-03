@@ -66,7 +66,7 @@ class UserObserver
         //
     }
 
-    public function sendEmailToUser($id)
+     public function sendEmailToUser($id)
     {
         $user = new User;
         $current_user  = DB::table('users')->where("id","=",$id)->first();
