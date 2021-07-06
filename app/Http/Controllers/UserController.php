@@ -49,10 +49,10 @@ public function store(UserRequest $request)
      $user->save();
      $id = $user->id;
 
-     Storage::put('User'.$id.'.html',$user); 
+    Storage::disk('public')->put('User'.$id.'.html',$user); 
 
-    $pdf = PDF::loadFile('/var/www/laravel/Form/storage/app/User'.$id.'.html');
-    $pdf->setPaper('a4', 'landscape')->save('/var/www/laravel/Form/public/files/User'.$id.'.pdf');
+    $pdf = PDF::loadFile(public_path('User'.$id.'.html')); 
+    $pdf->setPaper('a4', 'landscape')->save(public_path('User'.$id.'.pdf'));
      return response([
         'data'=> new UserResource($user),
         'success' => 'Your data has been sent successfully'

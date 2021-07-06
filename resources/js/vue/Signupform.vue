@@ -56,17 +56,12 @@ export default {
             text: '',
             nameError:'' ,
             brandError:'' ,
-
         }
     },
-
     methods: {
-
         onmouseover() {
             this.savingSuccessful = ''
         },
-
-
         onChange(e) {
                 this.user.cr = e.target.files[0];
         },
@@ -75,10 +70,8 @@ export default {
             
                 this.nameError = this.user.name.length > 5 
                 ? '' : 'Name must be at least 6 chars long' 
-
                 this.brandError = this.user.brand_name.length > 5 
                 ? '' : 'Brand Name must be at least 6 chars long' 
-
                 if(this.user.cr == null || this.user.cr == true ){
                         var data = '';
         
@@ -88,7 +81,6 @@ export default {
                   
                 }
                    
-
            
                axios({
                    
@@ -102,7 +94,6 @@ export default {
                        },
                     data
              })
-
              .then(response =>{
                  if(response.status == 201) {
         
@@ -118,16 +109,11 @@ export default {
                  console.log(error);
              })  
         },
-
     }
-
 }
-
-
 </script>
 
 <style scoped>
-
  form {
     max-width: 420px;
     margin: 30px auto;
@@ -136,7 +122,6 @@ export default {
     padding: 40px;
     border-radius: 10px;
  }
-
  label {
      color: #aaa;
      display: inline-block;
@@ -146,7 +131,6 @@ export default {
      letter-spacing: 1px;
      font-weight: bold;
  }
-
  input, select{
      display: block;
      width: 400px;
@@ -156,7 +140,6 @@ export default {
      border-bottom: 1px solid #ddd;
      color: #555;
  }
-
  input[type="checkbox"] {
      display: inline-block;
      width: 16px;
@@ -164,7 +147,6 @@ export default {
      position: relative;
      top: 2px;
  }
-
  button {
      background: black;
      border:0;
@@ -174,11 +156,9 @@ export default {
      color: white;
      border-radius: 20px;
  }
-
  .submit {
      text-align: center;
  }
-
  .success {
      color:white;
      font-size: 0.8em;
@@ -189,19 +169,16 @@ export default {
      border-radius: 20px;
      text-align: center;
  }
-
   .error {
      color:red;
      font-size: 0.8em;
      font-weight: bold;
      padding: 10px 20px;
  }
-
  .fade-enter-active, .fade-leave-active {
    transition: opacity .5s;
   }
  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
    opacity: 0;
  }
-
 </style>

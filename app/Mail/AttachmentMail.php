@@ -38,6 +38,6 @@ class AttachmentMail extends Mailable implements ShouldQueue
         // dd($this->id);
         return $this->markdown('emails.attachment')
         ->subject('Request Confirmation')
-        ->attach(public_path('/files/User'.$this->id.'.pdf'));
+        ->attach(public_path('User'.$this->id.'.pdf'));
     }
 }
