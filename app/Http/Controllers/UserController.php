@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
-use App\Http\Requests\UserRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmailsController;
@@ -47,7 +46,7 @@ public function store(Request $request)
       'cr'         => 'nullable|mimes:pdf',
    ]);
 
-    if ($validate->fails()) {
+   if ($validate->fails()) {
       return response()->json(['error' => $validate->errors()], 422);
    }
 
