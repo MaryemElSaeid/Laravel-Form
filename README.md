@@ -26,7 +26,7 @@ In the .env file, add database information to allow Laravel to connect to the da
 
 $php artisan migrate
 
-$npm run install
+$npm install
 
 $php artisan serve To get started visit http://127.0.0.1:8000
 
