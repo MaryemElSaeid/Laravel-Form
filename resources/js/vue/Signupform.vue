@@ -13,6 +13,9 @@
 
         <label>Email:</label>
         <input type="email" required v-model="user.email" v-on:click="onmouseover">
+        <div v-if="emailError" class="error">
+            {{ emailError }}
+        </div>
 
         <label>Brand Name:</label>
         <input type="text" required v-model="user.brand_name" v-on:click="onmouseover">
@@ -56,6 +59,7 @@ export default {
             text: '',
             nameError:'' ,
             brandError:'' ,
+            emailError : '',
         }
     },
     methods: {
@@ -67,11 +71,7 @@ export default {
         },
                
                handleSubmit() {
-            
-                this.nameError = this.user.name.length > 5 
-                ? '' : 'Name must be at least 6 chars long' 
-                this.brandError = this.user.brand_name.length > 5 
-                ? '' : 'Brand Name must be at least 6 chars long' 
+    
                 if(this.user.cr == null || this.user.cr == true ){
                         var data = '';
         
@@ -103,10 +103,16 @@ export default {
                         this.user.brand_name='';
                         this.show = false ;
                         this.user.cr = null ;
+                        this.nameError = '';
+                        this.brandError = '';
+                        this.emailError ='';
                  }
              })
              .catch(error => {
-                 console.log(error);
+                      console.error(error)
+                      this.nameError = error.response.data.error.name
+                      this.emailError = error.response.data.error.email
+                      this.brandError = error.response.data.error.brand_name                  
              })  
         },
     }

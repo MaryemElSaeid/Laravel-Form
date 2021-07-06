@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmailsController;
+use Illuminate\Support\Facades\Validator;
 use Exception;
 use Storage;
 use \PDF;
@@ -35,11 +36,26 @@ public function create()
     //
  }
 
-public function store(UserRequest $request)
+public function store(Request $request)
  { 
-     $user = new User($request->all());
+   
+  $validate = Validator::make($request->all(),[
+
+      'name'       => 'required|min:6|max:50',
+      'email'      => 'required|email|unique:users,email',
+      'brand_name' => 'required|min:6|max:100',
+      'cr'         => 'nullable|mimes:pdf',
+   ]);
+
+    if ($validate->fails()) {
+      return response()->json(['error' => $validate->errors()], 422);
+   }
+
+     $user = User::create($request->all());
+     
 
      if($request->cr) {
+
         $fileName = time().'_'.$request->cr->getClientOriginalName();
         $filePath = $request->cr->storeAs('uploads', $fileName, 'public');
         $user->cr = '/storage/' . $filePath;    
@@ -53,6 +69,7 @@ public function store(UserRequest $request)
 
     $pdf = PDF::loadFile(public_path('User'.$id.'.html')); 
     $pdf->setPaper('a4', 'landscape')->save(public_path('User'.$id.'.pdf'));
+
      return response([
         'data'=> new UserResource($user),
         'success' => 'Your data has been sent successfully'

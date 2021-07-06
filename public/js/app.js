@@ -1888,6 +1888,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1901,7 +1904,8 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       text: '',
       nameError: '',
-      brandError: ''
+      brandError: '',
+      emailError: ''
     };
   },
   methods: {
@@ -1913,9 +1917,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleSubmit: function handleSubmit() {
       var _this = this;
-
-      this.nameError = this.user.name.length > 5 ? '' : 'Name must be at least 6 chars long';
-      this.brandError = this.user.brand_name.length > 5 ? '' : 'Brand Name must be at least 6 chars long';
 
       if (this.user.cr == null || this.user.cr == true) {
         var data = '';
@@ -1944,9 +1945,15 @@ __webpack_require__.r(__webpack_exports__);
           _this.user.brand_name = '';
           _this.show = false;
           _this.user.cr = null;
+          _this.nameError = '';
+          _this.brandError = '';
+          _this.emailError = '';
         }
       })["catch"](function (error) {
-        console.log(error);
+        console.error(error);
+        _this.nameError = error.response.data.error.name;
+        _this.emailError = error.response.data.error.email;
+        _this.brandError = error.response.data.error.brand_name;
       });
     }
   }
@@ -20177,6 +20184,12 @@ var render = function() {
           }
         }
       }),
+      _vm._v(" "),
+      _vm.emailError
+        ? _c("div", { staticClass: "error" }, [
+            _vm._v("\n        " + _vm._s(_vm.emailError) + "\n    ")
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("label", [_vm._v("Brand Name:")]),
       _vm._v(" "),
