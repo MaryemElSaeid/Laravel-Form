@@ -50,7 +50,13 @@ public function store(Request $request)
       return response()->json(['error' => $validate->errors()], 422);
    }
 
-     $user = User::create($request->all());
+   //   $user = User::create($request->all());
+     $user = new User();
+     $user->name = $request->get('name');
+     $user->email = $request->get('email');
+     $user->brand_name = $request->get('brand_name');
+     
+   //   $user->cr = $request->get('cr');
      
 
      if($request->cr) {
@@ -61,13 +67,15 @@ public function store(Request $request)
 
     }
     
-     $user->save();
-     $id = $user->id;
+    
+     $email = $user->email;
 
-    Storage::disk('public')->put('User'.$id.'.html',$user); 
-
-    $pdf = PDF::loadFile(public_path('User'.$id.'.html')); 
-    $pdf->setPaper('a4', 'landscape')->save(public_path('User'.$id.'.pdf'));
+    Storage::disk('public')->put('User'.$email.'.html',$user); 
+   //  dd('test');
+    
+    $pdf = PDF::loadFile(public_path('User'.$email.'.html')); 
+    $pdf->setPaper('a4', 'landscape')->save(public_path('User'.$email.'.pdf'));
+    $user->save();
 
      return response([
         'data'=> new UserResource($user),
