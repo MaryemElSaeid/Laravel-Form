@@ -69,11 +69,11 @@ class UserObserver
 
      public function sendEmailToUser($id)
     {
-        // $user = new User;
+       
         $this->current_user  = DB::table('users')->find($id);
         $userEmail = $this->current_user->email;
         Mail::to($userEmail)->send(new WelcomeMail());
-        // return new WelcomeMail();
+       
     }
 
     public function sendEmailToAdmin($id) 

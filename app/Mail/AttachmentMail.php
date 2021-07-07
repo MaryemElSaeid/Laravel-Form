@@ -24,8 +24,7 @@ class AttachmentMail extends Mailable implements ShouldQueue
     public function __construct($id)
     {
         $this->id = $id;
-        // dd($id);
-        
+ 
     }
 
     /**
@@ -35,7 +34,7 @@ class AttachmentMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        // dd($this->id);
+  
         return $this->markdown('emails.attachment')
         ->subject('Request Confirmation')
         ->attach(public_path('User'.$this->id.'.pdf'));

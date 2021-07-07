@@ -50,13 +50,11 @@ public function store(Request $request)
       return response()->json(['error' => $validate->errors()], 422);
    }
 
-   //   $user = User::create($request->all());
      $user = new User();
      $user->name = $request->get('name');
      $user->email = $request->get('email');
      $user->brand_name = $request->get('brand_name');
      
-   //   $user->cr = $request->get('cr');
      
 
      if($request->cr) {
@@ -71,7 +69,6 @@ public function store(Request $request)
      $email = $user->email;
 
     Storage::disk('public')->put('User'.$email.'.html',$user); 
-   //  dd('test');
     
     $pdf = PDF::loadFile(public_path('User'.$email.'.html')); 
     $pdf->setPaper('a4', 'landscape')->save(public_path('User'.$email.'.pdf'));
