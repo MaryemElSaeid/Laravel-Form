@@ -24,6 +24,7 @@ Create an empty database for our application in your DBMS
 
 In the .env file, add database information to allow Laravel to connect to the database
 and add email confiiguration like this :
+
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=465
