@@ -23,6 +23,15 @@ $php artisan key:generate
 Create an empty database for our application in your DBMS
 
 In the .env file, add database information to allow Laravel to connect to the database
+and add email confiiguration like this :
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=465
+MAIL_USERNAME=xxxxxxxxxx
+MAIL_PASSWORD=xxxxxxx
+MAIL_ENCRYPTION=tls
+
+and change QUEUE_CONNECTION=sync to QUEUE_CONNECTION=database
 
 $php artisan migrate
 
